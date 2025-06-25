@@ -5,6 +5,10 @@ const InventorySchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    description:{
+        type: String,
+        required: true,
+    },
     price:{
         type: Number,
         required: true,
@@ -26,6 +30,6 @@ const InventorySchema = mongoose.Schema({
     },
 });
 
-const Inverntory = mongoose.model("Inventory", InventorySchema);
+const Inventory = mongoose.model("Inventory", InventorySchema);
 
-export default Inverntory;
+export default Inventory;
