@@ -17,7 +17,12 @@ export const getReservations = async(req ,res) =>{
 export const addReservation = async(req ,res) =>{
     try{
     const {body} = req ;
+    const {table , date ,time } = req.body
     const newReservation = new Reservations(body);
+    const existingReservation = await Reservations.findOne({table , date ,time });
+    if(existingReservation){
+       return res.status(409).send("Reservation exists!!")
+    }
     await newReservation.save();
     console.log("Reservation added successfully!!");
     return res.status(201).json({ message: "Reservation added successfully!", Reservation: newReservation });
@@ -31,7 +36,12 @@ export const updateReservation = async (req, res)=>{
     try{
         const {id} = req.params;
         const {body} = req;
+        const {table , date ,time } = req.body
         const newReservation = await Reservations.findByIdAndUpdate(id , body , {new: true});
+        const existingReservation = await Reservations.findOne({table , date ,time });
+        if(existingReservation){
+        return res.status(409).send("Reservation exists!!")
+        }
         if (!newReservation){
             return res.status(404).send("reservation not found")
         }
