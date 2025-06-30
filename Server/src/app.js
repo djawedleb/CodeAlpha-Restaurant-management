@@ -5,14 +5,14 @@ import InventoryRouter from "./routes/InventoryRoutes.js";
 import OrdersRouter from "./routes/OrdersRoutes.js";
 import TablesRouter from "./routes/TablesRoutes.js";
 import ReservationsRouter from "./routes/ReservationsRoutes.js";
-
+import cors from "cors";
 
 dotenv.config();
 
 const app = express();
 connectDb();
 app.use(express.json());
-
+app.use(cors());
 
 app.use('/api/Inventory ' , InventoryRouter);
 app.use('/api/Tables' , TablesRouter);
