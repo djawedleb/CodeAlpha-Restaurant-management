@@ -1,4 +1,4 @@
-import Tables from "../models/TablesSchema";
+import Tables from "../models/TablesSchema.js";
 
 export const getTables = async (req , res) =>{
     try{
@@ -14,11 +14,15 @@ export const getTables = async (req , res) =>{
 };
 export const addTable = async(req ,res) =>{
     try{
-    const {body} = req ;
-    const newTable = new Tables(body);
+    const {number} = req.body ;
+    const newTable = new Tables(req.body);
+    const existingTable = await Tables.findOne({ number });
+    if (existingTable) {
+        return res.status(409).send("Table already exists!");
+    }
     await newTable.save();
     console.log("Table added successfully!!");
-    return res.status(201).json({ message: "Order added successfully!", Tables: newTable });
+    return res.status(201).json({ message: "Table added successfully!", Tables: newTable });
 }catch(error){
     console.error(error);
     return res.status(500).send(error.message);

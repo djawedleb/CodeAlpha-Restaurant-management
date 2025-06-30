@@ -6,7 +6,7 @@ const OrdersSchema = mongoose.Schema({
         required: true,
     },
     table:{
-        type: String,
+        type: Number,
         required: true,
     },
     totalprice:{
