@@ -1,0 +1,12 @@
+.tables-container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.tables-container h1 {
+  color: #232946;
+}
