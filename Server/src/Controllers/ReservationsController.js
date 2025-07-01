@@ -4,9 +4,6 @@ import Reservations from "../models/ReservationsSchema.js";
 export const getReservations = async(req ,res) =>{
     try{
     const reservations = await Reservations.find();
-    if(reservations.length === 0){
-        return res.status(404).send("no reservations founded");
-    }
     return res.status(200).json(reservations);
    }catch(error){
     console.error(error);

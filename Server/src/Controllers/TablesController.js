@@ -3,9 +3,6 @@ import Tables from "../models/TablesSchema.js";
 export const getTables = async (req , res) =>{
     try{
         const tables = await Tables.find();
-        if(tables.length === 0 ) {
-            return res.status(404).send("No table Found");
-        }
         return res.status(200).json(tables);
     }catch(error){
         console.error(error);
@@ -41,4 +38,27 @@ export const deleteTable = async (req , res) => {
     console.error(error);
     return res.status(500).send(error.message);
    }
+};
+
+export const updateTable = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updateData = req.body;
+        
+        const updatedTable = await Tables.findByIdAndUpdate(
+            id, 
+            updateData, 
+            { new: true, runValidators: true }
+        );
+        
+        if (!updatedTable) {
+            return res.status(404).send("Table Not Found");
+        }
+        
+        console.log("Table Updated Successfully!!");
+        return res.status(200).json({ message: "Table updated successfully!", table: updatedTable });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send(error.message);
+    }
 };

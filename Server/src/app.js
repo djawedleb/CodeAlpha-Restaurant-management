@@ -14,7 +14,7 @@ connectDb();
 app.use(express.json());
 app.use(cors());
 
-app.use('/api/Inventory ' , InventoryRouter);
+app.use('/api/Inventory', InventoryRouter);
 app.use('/api/Tables' , TablesRouter);
 app.use('/api/Reservations' , ReservationsRouter);
 app.use('/api/Orders' , OrdersRouter);

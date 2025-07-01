@@ -6,13 +6,14 @@ import Reservations from './components/Reservations';
 import Tables from './components/Tables';
 import Inventory from './components/Inventory';
 import './Styles/Dashboard.css';
+import { MdDashboard, MdReceiptLong, MdFastfood, MdEventSeat, MdTableBar } from 'react-icons/md';
 
 const sidebarLinks = [
-  { to: '/dashboard', label: 'Dashboard', icon: '🏠' },
-  { to: '/orders', label: 'Orders', icon: '🧾' },
-  { to: '/reservations', label: 'Reservations', icon: '📅' },
-  { to: '/tables', label: 'Tables', icon: '🍽️' },
-  { to: '/inventory', label: 'Inventory', icon: '📦' },
+  { to: '/dashboard', label: 'Dashboard', icon: <MdDashboard size={22} /> },
+  { to: '/orders', label: 'Orders', icon: <MdReceiptLong size={22} /> },
+  { to: '/inventory', label: 'Food', icon: <MdFastfood size={22} /> },
+  { to: '/reservations', label: 'Reservations', icon: <MdEventSeat size={22} /> },
+  { to: '/tables', label: 'Tables', icon: <MdTableBar size={22} /> },
 ];
 
 function App() {
@@ -20,7 +21,10 @@ function App() {
     <Router>
       <div className="app-layout">
         <aside className="sidebar improved-sidebar">
-          <h2>Resto</h2>
+          <div className="sidebar-logo">
+            <MdFastfood size={32} style={{ color: '#ff7043', marginRight: 8 }} />
+            <span className="sidebar-title">RestoManager</span>
+          </div>
           <nav>
             <ul>
               {sidebarLinks.map((link) => (

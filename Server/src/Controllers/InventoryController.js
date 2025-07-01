@@ -3,9 +3,6 @@ import Inventory from "../models/InventorySchema.js";
 export const getInventory = async (req , res) => {
     try{
         const inventory = await Inventory.find();
-        if(inventory.length === 0){
-            return res.status(404).send("No Item found");
-        }
         return res.status(200).json(inventory);
        }catch(error){
         console.error(error);
